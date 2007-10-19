@@ -1,0 +1,14 @@
+# $Id: configure.in,v 1.1.1.1 2007-10-19 05:16:17 hww3 Exp $
+AC_INIT(hyphenate_config.h.in)
+
+AC_MODULE_INIT()
+AC_CONFIG_HEADERS(hyphenate_config.h)
+
+CMOD_LIBS=""
+CMOD_FLAGS=""
+
+AC_SUBST(CMOD_CFLAGS) 
+AC_SUBST(CMOD_LIBS)
+
+AC_OUTPUT(Makefile)
+

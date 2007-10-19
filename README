@@ -1,0 +1,9 @@
+This module provides an interface to the altlinux hyphenator (derived from libhnj).
+The altlinux hyphenator uses modified TeX hyphenation dictionaries. For details, see
+the altlinux directory.
+
+Use:
+
+> object h = Public.Tools.Language.Hyphenate("altlinux/hyph_en_US.dic"); 
+> h->hyphenate("longfellow");                             
+(1) Result: "longfel-low"
