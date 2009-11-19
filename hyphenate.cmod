@@ -21,13 +21,7 @@
 PIKECLASS Hyphenate
 {
 
-typedef struct
-{
-    HyphenDict * dict;
-} HYPHENATE_OBJECT_DATA;
-
-CVAR HYPHENATE_OBJECT_DATA   *object_data;
-
+CVAR HyphenDict  *dict;
 
 /*! @decl void create(string appname)
  *!   Creates a new Public.Sample.Sample object
@@ -45,7 +39,7 @@ PIKEFUN void create(string dictionary)
     Pike_error("unable to load hyphenation dictionary.\n");
   }
 
-  THIS->object_data->dict = hd;
+  THIS->dict = hd;
 
   pop_n_elems(args);
 }
@@ -66,7 +60,7 @@ k = word->len;
   /* and hyphen information */
   lcword = (char *) malloc(k+1);
   hyphens = (char *)malloc(k+5);
-  enmkallsmall(lcword,word->str,THIS->object_data->dict->cset);
+  enmkallsmall(lcword,word->str,THIS->dict->cset);
 //printf("hyphenating\n");
   /* first remove any trailing periods */
   n = k-1;
@@ -75,7 +69,7 @@ k = word->len;
 
   /* now actually try to hyphenate the word */
   if (n > 0) {
-    if (hnj_hyphen_hyphenate(THIS->object_data->dict, lcword, n-1, hyphens))
+    if (hnj_hyphen_hyphenate(THIS->dict, lcword, n-1, hyphens))
     {
         free(hyphens);
         free(lcword);
@@ -118,20 +112,13 @@ k = word->len;
 
 INIT
 {
-    HYPHENATE_OBJECT_DATA * dta = 
-	(HYPHENATE_OBJECT_DATA*)malloc(sizeof(HYPHENATE_OBJECT_DATA));
-    if (!dta)
-        Pike_error("init_sample: Out of memory!\n");
-
-    THIS->object_data = dta;
+  THIS->dict = NULL;
 }
 
 EXIT 
 {
-  if(THIS->object_data)
-  {
-    free(THIS->object_data);
-  }
+  if(THIS && THIS->dict)
+    free(THIS->dict);
 }
 
 }

@@ -10,7 +10,7 @@ OBJS=altlinux/hyphen.o altlinux/hnjalloc.o altlinux/csutil.o hyphenate.o
 
 # the module directory we put things into. it should be a directory path
 # of .pmod directories, and this must end with a trailing slash.
-MODDIR=Public.pmod/Tools.pmod/Language.pmod
+MODDIR=Public.pmod/Tools.pmod/Language.pmod/
 
 # the module name the resulting dynamic and/or pike module will be 
 # installed as. note that it's just a module or class name without extension.
