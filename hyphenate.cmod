@@ -21,7 +21,8 @@
 PIKECLASS Hyphenate
 {
 
-CVAR HyphenDict  *dict;
+CVAR     HyphenDict * dict;
+
 
 /*! @decl void create(string appname)
  *!   Creates a new Public.Sample.Sample object
@@ -112,13 +113,15 @@ k = word->len;
 
 INIT
 {
-  THIS->dict = NULL;
+    THIS->dict = NULL;
 }
 
 EXIT 
 {
-  if(THIS && THIS->dict)
+  if(THIS->dict)
+  {
     free(THIS->dict);
+  }
 }
 
 }
