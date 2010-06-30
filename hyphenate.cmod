@@ -8,6 +8,7 @@
  */
 
 #define _GNU_SOURCE
+#define DEFAULT_CMOD_STORAGE
 
 #include "hyphenate_config.h"
 #include "util.h"
@@ -64,10 +65,10 @@ k = word->len;
   enmkallsmall(lcword,word->str,THIS->dict->cset);
 //printf("hyphenating\n");
   /* first remove any trailing periods */
+/* NOTE: why??? */
   n = k-1;
-  while((n >=0) && (lcword[n] == '.')) n--;
+  while((n >=0) /*&& (lcword[n] == '.')*/) n--;
   n++;
-
   /* now actually try to hyphenate the word */
   if (n > 0) {
     if (hnj_hyphen_hyphenate(THIS->dict, lcword, n-1, hyphens))
