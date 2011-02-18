@@ -56,29 +56,23 @@ char *lcword;
 char *hyphword;
 
 k = word->len;
-//  *(word + k - 1) = '\0';
 
   /* set aside some buffers to hold lower cased */
   /* and hyphen information */
   lcword = (char *) malloc(k+1);
   hyphens = (char *)malloc(k+5);
   enmkallsmall(lcword,word->str,THIS->dict->cset);
-//printf("hyphenating\n");
-  /* first remove any trailing periods */
-/* NOTE: why??? */
-  n = k-1;
-  while((n >=0) /*&& (lcword[n] == '.')*/) n--;
-  n++;
-  /* now actually try to hyphenate the word */
-  if (n > 0) {
-    if (hnj_hyphen_hyphenate(THIS->dict, lcword, n-1, hyphens))
+
+  n = strlen(lcword);
+
+  if (k > 0) {
+    if(hnj_hyphen_hyphenate(THIS->dict, lcword, n-1, hyphens))
     {
         free(hyphens);
         free(lcword);
-		pop_n_elems(args);
+	pop_n_elems(args);
         Pike_error("hyphenation error\n");
        }
-
 
        /* now backfill hyphens[] for any removed periods */
        for (c = n; c < k; c++) hyphens[c] = '0';
@@ -103,7 +97,6 @@ k = word->len;
 	
 		   pop_n_elems(args);
 	       push_text(hyphword);
-//printf("done\n");
 	       free(hyphens);
 	       free(lcword);
 	       free(hyphword);
