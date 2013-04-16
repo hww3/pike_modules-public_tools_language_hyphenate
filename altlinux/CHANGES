@@ -1,3 +1,0 @@
-2005-10-13
-	fixed the call to hnj_hyphen_hyphenate() in example.c so that
-	patterns ending in a dot should now work (Daniel Naber)

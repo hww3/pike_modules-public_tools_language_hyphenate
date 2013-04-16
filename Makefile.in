@@ -4,9 +4,11 @@ VPATH=@srcdir@:@srcdir@/../..:../..
 
 # things we should define.
 
+HYPHENATION=hyphen-2.8.6
+
 # the .o files that we need to generate for the module
 # rules will automatically generate these from .c, .cmod, .m and .mmod files.
-OBJS=altlinux/hyphen.o altlinux/hnjalloc.o altlinux/csutil.o hyphenate.o
+OBJS=${HYPHENATION}/hyphen.o ${HYPHENATION}/hnjalloc.o ${HYPHENATION}/substrings.o hyphenate.o
 
 # the module directory we put things into. it should be a directory path
 # of .pmod directories, and this must end with a trailing slash.
