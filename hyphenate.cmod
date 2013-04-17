@@ -25,7 +25,7 @@ CVAR     HyphenDict * dict;
 
 
 /*! @decl void create(string appname)
- *!   Creates a new Public.Sample.Sample object
+ *!   Creates a new Hyphenate object
  *!
  */
 PIKEFUN void create(string dictionary)
@@ -110,6 +110,10 @@ PIKEFUN string low_hyphenate(string word)
   }
 }
 
+/*! @decl string hyphenate(string word)
+ *!
+ *! Break a word into its possible hyphenations.
+ */
 PIKEFUN string hyphenate(string word)
 {
   f_lower_case(1);
