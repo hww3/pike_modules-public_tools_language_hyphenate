@@ -48,8 +48,8 @@ static void swap2(
   int i,
   int j
 ) {
-  if (i==j) return;
   char*v;
+  if (i==j) return;
   v=a[i]; a[i]=a[j]; a[j]=v;
   v=b[i]; b[i]=b[j]; b[j]=v;
 }
@@ -174,6 +174,10 @@ int main(int argc, const char* argv[]) {
   int   newpatterns = 0;
   char format[132]; // 64+65+newline+zero+spare
   int p;
+  int i,j;
+  char *pat;
+  char *org;
+
   if (argc!=3) die("Usage: <orig-file> <new-file>\n");
   if ((in = fopen(argv[1],"r"))==NULL) die("Could not read input");
   if ((out = fopen(argv[2],"w"))==NULL) die("Could not create output");
@@ -188,9 +192,8 @@ int main(int argc, const char* argv[]) {
         l--;
         format[l] = 0; // remove '%'
       }
-      int i,j;
-      char *pat = (char*) malloc(l+1);
-      char *org = (char*) malloc(l*2+1);
+      pat = (char*) malloc(l+1);
+      org = (char*) malloc(l*2+1);
       if (pat==NULL || org==NULL) die("not enough memory");
       expand(org,format,l);
       // remove hyphenation encoders (digits) from pat

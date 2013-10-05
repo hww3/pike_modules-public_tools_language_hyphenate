@@ -23,7 +23,6 @@ PIKECLASS Hyphenate
 
 CVAR     HyphenDict * dict;
 
-
 /*! @decl void create(string appname)
  *!   Creates a new Hyphenate object
  *!
@@ -32,6 +31,7 @@ PIKEFUN void create(string dictionary)
 {
   HyphenDict * hd;
   char * dn;
+printf("create()\n");
   dn = strdup(dictionary->str);
   hd = hnj_hyphen_load(dn);
 
@@ -130,9 +130,14 @@ INIT
 
 EXIT 
 {
-  if(THIS->dict)
+  HyphenDict * hd;
+printf("end\n");
+  if(THIS && THIS->dict != NULL)
   {
-    free(THIS->dict);
+printf("freeing\n");    
+    hd = THIS->dict;
+printf("dict: %p\n", hd);
+    hnj_hyphen_free(hd);
   }
 }
 
