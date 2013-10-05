@@ -57,10 +57,14 @@ pmar:  verify
 	-cp -rf plib/modules/* ${MODULE_DIR_NAME}-1.${MIN}/MODULE
 	echo "MODULE=${MODULE_NAME}" > ${MODULE_DIR_NAME}-1.${MIN}/METADATA.TXT
 	echo "VERSION=1.${MIN}" >> ${MODULE_DIR_NAME}-1.${MIN}/METADATA.TXT
-	if test x${OBJS} = x ; then \
+	if test "x${OBJS}" = x ; then \
 	echo "PLATFORM=any/any" >> ${MODULE_DIR_NAME}-1.${MIN}/METADATA.TXT ; \
-	else \
-	echo "CREATING A NON-PLATFORM INDEPENDENT PACKAGE! YOU MUST UPDATE THE PLATFORM VALUE IN METADATA.TXT." ;\
+	elif test "x${PLATFORM}" != "x" ; then \
+	  echo "PLATFORM=${PLATFORM}" >> ${MODULE_DIR_NAME}-1.${MIN}/METADATA.TXT ; \
+	  echo "PLATFORM IS ${PLATFORM}"; \
+        else \
+        echo "No PLATFORM SPECIFIED" ; \
+        exit 1; \
 	fi
 	tar cvf ${MODULE_DIR_NAME}-1.${MIN}.pmar ${MODULE_DIR_NAME}-1.${MIN}
 	rm -rf ${MODULE_DIR_NAME}-1.${MIN}
