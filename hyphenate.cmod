@@ -31,7 +31,7 @@ PIKEFUN void create(string dictionary)
 {
   HyphenDict * hd;
   char * dn;
-printf("create()\n");
+//printf("create()\n");
   dn = strdup(dictionary->str);
   hd = hnj_hyphen_load(dn);
 
@@ -118,8 +118,8 @@ PIKEFUN string hyphenate(string word)
 {
   f_lower_case(1);
   f_string_to_utf8(1);
-  f_Hyphenate_low_hyphenate(1);
-  if(Pike_sp[-1].type == T_STRING)
+  f_Hyphenate_Hyphenate_low_hyphenate(1);
+  if(TYPEOF(Pike_sp[-1]) == T_STRING)
     f_utf8_to_string(1);
 }
 
@@ -131,12 +131,12 @@ INIT
 EXIT 
 {
   HyphenDict * hd;
-printf("end\n");
+//printf("end\n");
   if(THIS && THIS->dict != NULL)
   {
-printf("freeing\n");    
+//printf("freeing\n");    
     hd = THIS->dict;
-printf("dict: %p\n", hd);
+//printf("dict: %p\n", hd);
     hnj_hyphen_free(hd);
   }
 }

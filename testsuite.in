@@ -1,0 +1,23 @@
+START_MARKER
+
+// verify that we have all of the expected classes and objects
+test_true(objectp(Public.Tools.Language.Hyphenate))
+test_true(programp(Public.Tools.Language.Hyphenate.Hyphenate))
+
+// we pass a non-existent dictionary
+test_true(catch(Public.Tools.Language.Hyphenate.Hyphenate("foo")))
+
+// we pass a good dictionary
+test_true(objectp(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")))
+
+test_true(functionp(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")->hyphenate))
+
+test_eq(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")->hyphenate(""), "")
+test_eq(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")->hyphenate("foo"), "foo")
+test_eq(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")->hyphenate("apple"), "ap-ple")
+test_eq(Public.Tools.Language.Hyphenate.Hyphenate("hyphen-2.8.6/hyph_en_US.dic")->hyphenate("app-le"), "app-le")
+
+// TODO need to add tests for wide-strings
+
+END_MARKER
+

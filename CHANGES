@@ -1,3 +1,8 @@
+Version 1.3
+
+- Added testsuite
+- Pike 8.0 support
+
 Version 1.2
 
 - Updates for Windows build
