@@ -1,11 +1,8 @@
 /* Standard Pike include files. */
-#include "bignum.h"
 #include "array.h"
 #include "builtin_functions.h"
 #include "constants.h"
 #include "interpret.h"
-#include "mapping.h"
-#include "multiset.h"
 #include "module_support.h"
 #include "object.h"
 #include "pike_macros.h"
